@@ -40,7 +40,7 @@
     position: absolute;
     top: 660px;
     left: 57%;
-    /* display: none;  */
+    display: none; 
     padding: 15px 30px;
     margin: 40px 0;
     color: #03e9f4;
