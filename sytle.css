@@ -1,0 +1,158 @@
+.level1bg{
+  --s: 82px; /* control the size */
+  --c1: #b2b2b2;
+  --c2: #ffffff;
+  --c3: #d9d9d9;
+  
+  --_g: var(--c3) 0 120deg,#0000 0;
+  background:
+    conic-gradient(from -60deg at 50% calc(100%/3),var(--_g)),
+    conic-gradient(from 120deg at 50% calc(200%/3),var(--_g)),
+    conic-gradient(from  60deg at calc(200%/3),var(--c3) 60deg,var(--c2) 0 120deg,#0000 0),
+    conic-gradient(from 180deg at calc(100%/3),var(--c1) 60deg,var(--_g)),
+    linear-gradient(90deg,var(--c1)   calc(100%/6),var(--c2) 0 50%,
+                          var(--c1) 0 calc(500%/6),var(--c2) 0);
+  background-size: calc(1.732*var(--s)) var(--s);
+}
+.level2bg {
+  --s: 82px; /* control the size */
+  --c1: #e46262; /* Cambiado a un tono de rojo más pronunciado */
+  --c2: #fbdede;
+  --c3: #bdbbbb;
+  
+  --_g: var(--c3) 0 120deg, #0000 0;
+  background:
+    conic-gradient(from -60deg at 50% calc(100%/3), var(--_g)),
+    conic-gradient(from 120deg at 50% calc(200%/3), var(--_g)),
+    conic-gradient(from 60deg at calc(200%/3), var(--c3) 60deg, var(--c2) 0 120deg, #0000 0),
+    conic-gradient(from 180deg at calc(100%/3), var(--c1) 60deg, var(--_g)),
+    linear-gradient(90deg, var(--c1) calc(100%/6), var(--c2) 0 50%,
+      var(--c1) 0 calc(500%/6), var(--c2) 0);
+  background-size: calc(1.732 * var(--s)) var(--s);
+}
+.level3bg {
+  --s: 82px; /* control the size */
+  --c1: #e14141; /* Cambiado a un tono de rojo más pronunciado */
+  --c2: #f4b4b4;
+  --c3: #907a7a;
+  
+  --_g: var(--c3) 0 120deg, #0000 0;
+  background:
+    conic-gradient(from -60deg at 50% calc(100%/3), var(--_g)),
+    conic-gradient(from 120deg at 50% calc(200%/3), var(--_g)),
+    conic-gradient(from 60deg at calc(200%/3), var(--c3) 60deg, var(--c2) 0 120deg, #0000 0),
+    conic-gradient(from 180deg at calc(100%/3), var(--c1) 60deg, var(--_g)),
+    linear-gradient(90deg, var(--c1) calc(100%/6), var(--c2) 0 50%,
+      var(--c1) 0 calc(500%/6), var(--c2) 0);
+  background-size: calc(1.732 * var(--s)) var(--s);
+}
+
+
+.tittle {
+  text-align: center;
+}
+
+.canvasdysplay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-image: url(../img/pexels-alex-andrews-821718.jpg);
+    background-size: cover;
+    z-index: 1;
+  }
+  #GameOver{
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-image: url(../img/game-5465779_1280.png);
+    background-size: cover;
+    cursor: pointer;
+    z-index: 2;
+    
+  }
+  #Win{
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-image: url(../img/Win.jpg);
+    background-size: cover;
+    cursor: pointer;
+    z-index: 2;
+    
+  }
+
+
+  #startAgain {
+    background-color: antiquewhite;
+    border: none;
+    cursor: pointer;
+    padding: 13px;
+    font-size: 20px;
+    position: absolute;
+    top: 660px;
+    left: 30%;
+
+    display: none;
+  }
+
+  #next-level {
+    background-color: antiquewhite;
+    border: none;
+    cursor: pointer;
+    padding: 13px;
+    font-size: 20px;
+    position: absolute;
+    top: 660px;
+    left: 60%;
+    display: none;
+  }
+
+
+
+  .tittle {
+    text-transform: uppercase;
+  background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 5vw;
+   
+  }
+
+  /* Agrega estos estilos al final de tu archivo style.css */
+
+.level-container {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+.level-number {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.level-number:hover {
+  background-color: #2980b9;
+}
+
+.current-level {
+  background-color: #e74c3c;
+}
