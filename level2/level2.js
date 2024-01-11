@@ -1,6 +1,31 @@
 const c = document.getElementById("root");
 const ctx = c.getContext("2d");
 
+document.addEventListener("DOMContentLoaded", function () {
+  const levelContainer = document.getElementById("level-container");
+
+ 
+  const numberOfLevels = 6;
+  const currentLevel = 2; // level that I am
+
+  for (let i = 1; i <= numberOfLevels; i++) {
+    const levelNumber = document.createElement("p");
+    levelNumber.textContent = i;
+    levelNumber.classList.add("level-number");
+
+    if (i === currentLevel) {
+      levelNumber.classList.add("current-level");
+    } else if (i <= currentLevel) {
+      levelNumber.classList.add("current-level");
+    }
+
+    levelContainer.appendChild(levelNumber);
+  }
+});
+
+
+
+
 const startAgain = document.getElementById("startAgain");
 const nextLevel = document.getElementById("next-level");
 
@@ -8,7 +33,7 @@ startAgain.addEventListener("click", function () {
   location.reload();
 });
 nextLevel.addEventListener("click", function () {
-  window.location.replace('level4.html');
+  window.location.replace('/level3/level3.html');
 });
 
 var radius = 10;
@@ -25,18 +50,18 @@ let paddleH = 12;
 let rightMove = false;
 let leftMove = false;
 
-let brickRows = 5;
-let brickColums = 7;
+let brickRows = 4;
+let brickColums = 6;
 
 let brickWidth = 60;
 let brickHeight = 20;
 
-let brickPadding = 12;
+let brickPadding = 10;
 let brickOfSetTop = 30;
-let brickOfSetLeft = 100;
+let brickOfSetLeft = 80;
 
 let score = 0;
-let lives = 36;
+let lives = 6;
 
 let gameStarted = false;
 
@@ -113,6 +138,7 @@ function drawBriks() {
     }
   }
 }
+
 function detectHits() {
   for (let i = 0; i < brickColums; i++) {
     for (let j = 0; j < brickRows; j++) {
@@ -201,6 +227,7 @@ function draw() {
 
 function gameover() {
   document.getElementById("GameOver").style.display = "block";
+  document.getElementById("startAgain").style.display = "block";
   ctx.font = "38px Arial";
   ctx.fillText("Game Over: " + lives, c.width / 2, c.height / 2);
   ctx.fillStyle = "#0a66c2";
@@ -213,4 +240,4 @@ function Win() {
 }
 
 
-setInterval(draw, 1);
+setInterval(draw, 9);

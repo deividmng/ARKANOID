@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
  
   const numberOfLevels = 6;
-  const currentLevel = 1; // level that I am
+  const currentLevel = 3; // level that I am
 
   for (let i = 1; i <= numberOfLevels; i++) {
     const levelNumber = document.createElement("p");
@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
     levelNumber.classList.add("level-number");
 
     if (i === currentLevel) {
+      levelNumber.classList.add("current-level");
+    } else if (i <= currentLevel) {
       levelNumber.classList.add("current-level");
     }
 
@@ -31,7 +33,7 @@ startAgain.addEventListener("click", function () {
   location.reload();
 });
 nextLevel.addEventListener("click", function () {
-  window.location.replace('/level2/level2.html');
+  window.location.replace('/level4/level4.html');
 });
 
 var radius = 10;
@@ -48,20 +50,21 @@ let paddleH = 12;
 let rightMove = false;
 let leftMove = false;
 
-let brickRows = 3;
-let brickColums = 5;
+let brickRows = 5;
+let brickColums = 9;
 
 let brickWidth = 60;
 let brickHeight = 20;
 
 let brickPadding = 12;
 let brickOfSetTop = 30;
-let brickOfSetLeft = 100;
+let brickOfSetLeft = 10;
 
 let score = 0;
-let lives = 1;
+let lives = 3;
 
 let gameStarted = false;
+let lifeIncremented = false;// to dont start the loop 
 
 let briks = [];
 for (let i = 0; i < brickColums; i++) {
@@ -106,15 +109,16 @@ document.addEventListener("mousemove", mouseMoverHanler, false);
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, 2 * Math.PI);
-  ctx.fillStyle = "#0a66c2";
+  ctx.fillStyle = "#e14141";
   ctx.fill();
   ctx.closePath();
 }
 
+
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddlex, paddley, paddleW, paddleH);
-  ctx.fillStyle = "#0a66c4";
+  ctx.fillStyle = "#e14141";
   ctx.fill();
   ctx.closePath();
 }
@@ -129,7 +133,7 @@ function drawBriks() {
         briks[i][j].y = by;
 
         ctx.rect(bx, by, brickWidth, brickHeight);
-        ctx.fillStyle = "#0a66c2";
+        ctx.fillStyle = "#e14141";;
         ctx.fill();
         ctx.closePath();
       }
@@ -165,14 +169,20 @@ function detectHits() {
 function drawScore() {
   ctx.font = "18px Arial";
   ctx.fillText("Score: " + score, 10, 20);
+  
   ctx.fillStyle = "#0a66c2";
 }
 
 function drawlives() {
   ctx.font = "18px Arial";
+  ctx.fillStyle = "#e14141";
   ctx.fillText("Lives: " + lives, c.width - 70, 20);
+ 
   ctx.fillStyle = "#0a66c2";
 }
+
+
+
 
 function draw() {
   ctx.clearRect(0, 0, c.width, c.height);
@@ -182,6 +192,12 @@ function draw() {
   detectHits();
   drawScore();
   drawlives();
+  if (score > 14 && !lifeIncremented) {
+    lives += 1; 
+    lifeIncremented = true; 
+  }
+
+
   if (x + dx > c.width - radius || x + dx < radius) {
     dx = -dx;
   }

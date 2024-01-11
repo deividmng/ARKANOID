@@ -4,9 +4,8 @@ const ctx = c.getContext("2d");
 document.addEventListener("DOMContentLoaded", function () {
   const levelContainer = document.getElementById("level-container");
 
- 
-  const numberOfLevels = 6;
-  const currentLevel = 1; // level that I am
+  const numberOfLevels = 10;
+  const currentLevel = 9; // level that I am
 
   for (let i = 1; i <= numberOfLevels; i++) {
     const levelNumber = document.createElement("p");
@@ -15,14 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (i === currentLevel) {
       levelNumber.classList.add("current-level");
+    } else if (i <= currentLevel) {
+      levelNumber.classList.add("current-level");
     }
 
     levelContainer.appendChild(levelNumber);
   }
 });
-
-
-
 
 const startAgain = document.getElementById("startAgain");
 const nextLevel = document.getElementById("next-level");
@@ -31,7 +29,7 @@ startAgain.addEventListener("click", function () {
   location.reload();
 });
 nextLevel.addEventListener("click", function () {
-  window.location.replace('/level2/level2.html');
+  window.location.replace("/level10/level10.html");
 });
 
 var radius = 10;
@@ -153,8 +151,7 @@ function detectHits() {
           if (score === brickColums * brickRows) {
             alert("Congratulations");
             document.getElementById("next-level").style.display = "block";
-            Win()
-            
+            Win();
           }
         }
       }
@@ -235,6 +232,5 @@ function Win() {
   ctx.fillText("Win: " + lives, c.width / 2, c.height / 2);
   ctx.fillStyle = "#0a66c2";
 }
-
 
 setInterval(draw, 9);

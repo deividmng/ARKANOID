@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
  
   const numberOfLevels = 6;
-  const currentLevel = 1; // level that I am
+  const currentLevel = 4; // level that I am
 
   for (let i = 1; i <= numberOfLevels; i++) {
     const levelNumber = document.createElement("p");
@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
     levelNumber.classList.add("level-number");
 
     if (i === currentLevel) {
+      levelNumber.classList.add("current-level");
+    } else if (i <= currentLevel) {
       levelNumber.classList.add("current-level");
     }
 
@@ -31,7 +33,7 @@ startAgain.addEventListener("click", function () {
   location.reload();
 });
 nextLevel.addEventListener("click", function () {
-  window.location.replace('/level2/level2.html');
+  window.location.replace('/level5/level5.html');
 });
 
 var radius = 10;
@@ -48,20 +50,26 @@ let paddleH = 12;
 let rightMove = false;
 let leftMove = false;
 
-let brickRows = 3;
-let brickColums = 5;
+let brickRows = 10;
+let brickColums = 10;
 
-let brickWidth = 60;
-let brickHeight = 20;
+let brickWidth = 30;
+let brickHeight = 10;
 
 let brickPadding = 12;
 let brickOfSetTop = 30;
-let brickOfSetLeft = 100;
+let brickOfSetLeft = 210;
 
 let score = 0;
-let lives = 1;
+let lives = 3;
 
 let gameStarted = false;
+let lifeIncremented = false;// to dont start the loop 
+let paddelBigIncremented =false;// to dont start the loop 
+let paddelBigDincremented =false;// to dont start the loop 
+
+
+ctx.fillStyle = " #907a7a"; // color of the brick and ball and paddel 
 
 let briks = [];
 for (let i = 0; i < brickColums; i++) {
@@ -70,6 +78,9 @@ for (let i = 0; i < brickColums; i++) {
     briks[i][j] = { x: 0, y: 0, drawBrik: true };
   }
 }
+
+
+
 
 function keyDownHandler(e) {
   if (e.keyCode === 37) {
@@ -103,21 +114,6 @@ document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoverHanler, false);
 
-function drawBall() {
-  ctx.beginPath();
-  ctx.arc(x, y, radius, 0, 2 * Math.PI);
-  ctx.fillStyle = "#0a66c2";
-  ctx.fill();
-  ctx.closePath();
-}
-
-function drawPaddle() {
-  ctx.beginPath();
-  ctx.rect(paddlex, paddley, paddleW, paddleH);
-  ctx.fillStyle = "#0a66c4";
-  ctx.fill();
-  ctx.closePath();
-}
 
 function drawBriks() {
   for (let i = 0; i < brickColums; i++) {
@@ -127,15 +123,31 @@ function drawBriks() {
         var by = j * (brickHeight + brickPadding) + brickOfSetTop;
         briks[i][j].x = bx;
         briks[i][j].y = by;
-
+        
         ctx.rect(bx, by, brickWidth, brickHeight);
-        ctx.fillStyle = "#0a66c2";
+        
         ctx.fill();
         ctx.closePath();
       }
     }
   }
 }
+
+function drawBall() {
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, 2 * Math.PI);
+  
+  ctx.fill();
+  ctx.closePath();
+}
+function drawPaddle() {
+  ctx.beginPath();
+  ctx.rect(paddlex, paddley, paddleW, paddleH);
+
+  ctx.fill();
+  ctx.closePath();
+}
+
 function detectHits() {
   for (let i = 0; i < brickColums; i++) {
     for (let j = 0; j < brickRows; j++) {
@@ -165,14 +177,33 @@ function detectHits() {
 function drawScore() {
   ctx.font = "18px Arial";
   ctx.fillText("Score: " + score, 10, 20);
-  ctx.fillStyle = "#0a66c2";
+  
 }
 
 function drawlives() {
   ctx.font = "18px Arial";
+
   ctx.fillText("Lives: " + lives, c.width - 70, 20);
-  ctx.fillStyle = "#0a66c2";
 }
+
+
+
+function makeBig() {
+
+  if (score > 14 && !lifeIncremented) {
+    lives += 1; 
+    lifeIncremented = true; 
+  }
+  if (score > 22 && !paddelBigIncremented) {
+    paddleW += 111; 
+    paddelBigIncremented = true; 
+  }
+  if (score == 10 && !paddelBigDincremented) {
+    paddleW =- 90; 
+    paddelBigIncremented = true; 
+  }
+}
+
 
 function draw() {
   ctx.clearRect(0, 0, c.width, c.height);
@@ -182,6 +213,21 @@ function draw() {
   detectHits();
   drawScore();
   drawlives();
+
+  if (score > 2 && !lifeIncremented) {
+    lives += 1; 
+    lifeIncremented = true; 
+  }
+  if ((score > 2 && score <= 22 || score > 22) && !paddelBigIncremented) {
+    paddleW += 211;
+    paddelBigIncremented = true;
+  }
+  if ((score > 30 || score > 70) && !paddelBigDincremented) {
+    paddleW = score > 30 ? 90 : 50;
+    paddelBigDincremented = true;
+  }
+
+
   if (x + dx > c.width - radius || x + dx < radius) {
     dx = -dx;
   }
@@ -220,6 +266,8 @@ function draw() {
 
   x += dx;
   y += dy;
+
+  
 }
 
 function gameover() {
@@ -237,4 +285,4 @@ function Win() {
 }
 
 
-setInterval(draw, 9);
+setInterval(draw, 8);

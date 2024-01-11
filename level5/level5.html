@@ -12,26 +12,29 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" href="sytle.css">
+    <link rel="stylesheet" href="/sytle.css">
  
     <title>Breakout Game</title>
   </head>
-  <body class="level2bg">
+  <body class="level3bg">
     <h1 class="tittle">
       Welcome to Arkanoid 
     </h1>
+  
+
+    <canvas class="canvasdysplay" id="root"  width="860" height="450" style="border: solid black;"></canvas>
+    <canvas  id="GameOver"  width="860" height="450" style="border: solid black;"></canvas>
+    <canvas  id="Win"  width="860" height="450" style="border: solid black;"></canvas>
+   
+    
     <div id="level-container" class="level-container"></div>
-    <canvas class="canvasdysplay" id="root"  width="560" height="400" style="border: solid black;"></canvas>
-    <canvas  id="GameOver"  width="560" height="400" style="border: solid black;"></canvas>
+    <button id="startAgain" >start again</button>
 
+    <button  id="PLusLive"></button>
    
-    <button id="startAgain">start again
+      <button id="next-level" >next level  </button>
    
-      <button id="next-level" >next level
-
-    </button>
-   
-    <script src="level2.js"></script>
+    <script src="level5.js"></script>
  
   
   </body>

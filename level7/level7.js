@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const levelContainer = document.getElementById("level-container");
 
  
-  const numberOfLevels = 6;
-  const currentLevel = 1; // level that I am
+  const numberOfLevels = 10;
+  const currentLevel = 7; // level that I am
 
   for (let i = 1; i <= numberOfLevels; i++) {
     const levelNumber = document.createElement("p");
@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
     levelNumber.classList.add("level-number");
 
     if (i === currentLevel) {
+      levelNumber.classList.add("current-level");
+    } else if (i <= currentLevel) {
       levelNumber.classList.add("current-level");
     }
 
@@ -31,7 +33,7 @@ startAgain.addEventListener("click", function () {
   location.reload();
 });
 nextLevel.addEventListener("click", function () {
-  window.location.replace('/level2/level2.html');
+  window.location.replace('/level8/level8.html');
 });
 
 var radius = 10;

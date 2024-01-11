@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const levelContainer = document.getElementById("level-container");
 
  
-  const numberOfLevels = 6;
-  const currentLevel = 1; // level that I am
+  const numberOfLevels = 10;
+  const currentLevel = 10; // level that I am
 
   for (let i = 1; i <= numberOfLevels; i++) {
     const levelNumber = document.createElement("p");
@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
     levelNumber.classList.add("level-number");
 
     if (i === currentLevel) {
+      levelNumber.classList.add("current-level");
+    } else if (i <= currentLevel) {
       levelNumber.classList.add("current-level");
     }
 
@@ -28,10 +30,10 @@ const startAgain = document.getElementById("startAgain");
 const nextLevel = document.getElementById("next-level");
 
 startAgain.addEventListener("click", function () {
-  location.reload();
+  window.location.replace('/index.html');
 });
 nextLevel.addEventListener("click", function () {
-  window.location.replace('/level2/level2.html');
+  window.location.replace('https://github.com/deividmng/ARKANOID');
 });
 
 var radius = 10;
@@ -153,7 +155,7 @@ function detectHits() {
           if (score === brickColums * brickRows) {
             alert("Congratulations");
             document.getElementById("next-level").style.display = "block";
-            Win()
+            FinalGame()
             
           }
         }
@@ -161,7 +163,7 @@ function detectHits() {
     }
   }
 }
-
+ 
 function drawScore() {
   ctx.font = "18px Arial";
   ctx.fillText("Score: " + score, 10, 20);
@@ -229,8 +231,8 @@ function gameover() {
   ctx.fillText("Game Over: " + lives, c.width / 2, c.height / 2);
   ctx.fillStyle = "#0a66c2";
 }
-function Win() {
-  document.getElementById("Win").style.display = "block";
+function FinalGame() {
+  document.getElementById("Final-Game").style.display = "block";
   ctx.font = "38px Arial";
   ctx.fillText("Win: " + lives, c.width / 2, c.height / 2);
   ctx.fillStyle = "#0a66c2";
