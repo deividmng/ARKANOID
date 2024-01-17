@@ -59,7 +59,7 @@ let brickOfSetTop = 30;
 let brickOfSetLeft = 100;
 
 let score = 0;
-let lives = 1;
+let lives = 3;
 
 let gameStarted = false;
 

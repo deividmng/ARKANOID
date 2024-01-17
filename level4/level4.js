@@ -285,4 +285,4 @@ function Win() {
 }
 
 
-setInterval(draw, 8);
+setInterval(draw, 9);
